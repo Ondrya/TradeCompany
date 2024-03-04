@@ -28,7 +28,13 @@ namespace TradeCompanyApp.Pages.Orders
                 return NotFound();
             }
 
-            var order = await _context.Order.FirstOrDefaultAsync(m => m.OrderId == id);
+            var order = await _context
+                .Order
+                .Where(m => m.OrderId == id)
+                .Include(x => x.Client)
+                .FirstOrDefaultAsync();
+
+
             if (order == null)
             {
                 return NotFound();

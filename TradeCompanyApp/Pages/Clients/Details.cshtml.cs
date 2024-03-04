@@ -28,7 +28,13 @@ namespace TradeCompanyApp.Pages.Clients
                 return NotFound();
             }
 
-            var client = await _context.Client.FirstOrDefaultAsync(m => m.Id == id);
+            var client = await _context
+                .Client
+                .Where(m => m.Id == id)
+                .Include(x => x.Orders)
+                .FirstOrDefaultAsync();
+
+
             if (client == null)
             {
                 return NotFound();

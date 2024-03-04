@@ -35,6 +35,18 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Client.CreatedAt)
         </dd>
+
+        <ul>
+        @foreach (var item in @Model.Client.Orders)
+        {
+            <li>
+                <a asp-page="../Orders/Details" asp-route-id="@item.OrderId">
+                    - заказ @item.OrderId
+                </a>
+            </li>
+        }
+        </ul>
+
     </dl>
 </div>
 <div>

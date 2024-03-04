@@ -2,13 +2,13 @@
 @model TradeCompanyApp.Pages.Orders.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Список заказов";
 }
 
-<h1>Index</h1>
+<h1>Список заказов</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Добавить новый</a>
 </p>
 <table class="table">
     <thead>
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.Client.Id)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.OrderId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.OrderId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.OrderId">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.OrderId">редактировать</a> |
+                <a asp-page="./Details" asp-route-id="@item.OrderId">посмотреть</a> |
+                <a asp-page="./Delete" asp-route-id="@item.OrderId">удалить</a>
             </td>
         </tr>
 }

@@ -1,41 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using TradeCompanyApp.Data;
-using TradeCompanyApp.Models;
+using TradeCompanyApp.ModelsDto;
+using TradeCompanyApp.Services;
 
 namespace TradeCompanyApp.Pages.Orders
 {
     public class DeleteModel : PageModel
     {
-        private readonly TradeCompanyApp.Data.TradeCompanyAppContext _context;
+        private readonly DataService _context;
 
-        public DeleteModel(TradeCompanyApp.Data.TradeCompanyAppContext context)
+        public DeleteModel(DataService context)
         {
             _context = context;
         }
 
         [BindProperty]
-      public Order Order { get; set; } = default!;
+        public OrderDto Order { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Order == null)
-            {
-                return NotFound();
-            }
-
-            var order = await _context.Order.FirstOrDefaultAsync(m => m.OrderId == id);
+            var order = _context.OrderFind(id);
 
             if (order == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Order = order;
             }
@@ -44,18 +35,9 @@ namespace TradeCompanyApp.Pages.Orders
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Order == null)
-            {
-                return NotFound();
-            }
-            var order = await _context.Order.FindAsync(id);
+            var order = _context.OrderFind(id);
 
-            if (order != null)
-            {
-                Order = order;
-                _context.Order.Remove(Order);
-                await _context.SaveChangesAsync();
-            }
+            _context.OrderRemove(order?.OrderId);
 
             return RedirectToPage("./Index");
         }

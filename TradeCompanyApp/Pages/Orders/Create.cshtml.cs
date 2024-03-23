@@ -1,44 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using TradeCompanyApp.Data;
-using TradeCompanyApp.Models;
+using TradeCompanyApp.ModelsDto;
+using TradeCompanyApp.Services;
 
 namespace TradeCompanyApp.Pages.Orders
 {
     public class CreateModel : PageModel
     {
-        private readonly TradeCompanyApp.Data.TradeCompanyAppContext _context;
+        private readonly DataService _context;
 
-        public CreateModel(TradeCompanyApp.Data.TradeCompanyAppContext context)
+        public CreateModel(DataService context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
+            ViewData["ClientId"] = new SelectList(_context.ClientGetAll(), "Id", "Id");
             return Page();
         }
 
         [BindProperty]
-        public Order Order { get; set; } = default!;
-        
+        public OrderDto Order { get; set; } = default!;
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Order == null || Order == null)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Order.Add(Order);
-            await _context.SaveChangesAsync();
+            _context.Create(Order);
 
             return RedirectToPage("./Index");
         }

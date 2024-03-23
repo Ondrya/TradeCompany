@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace TradeCompanyApp.ModelsDto
+namespace TradeCompanyApp.DAL.Models
 {
-    public class ClientDto
+    public class Client
     {
         /// <summary>
         /// Идентификатор
@@ -37,7 +37,7 @@ namespace TradeCompanyApp.ModelsDto
         /// <summary>
         /// Заказы клиента
         /// </summary>
-        public virtual List<OrderDto>? Orders { get; set; }
+        public virtual List<Order>? Orders { get; set; }
 
 
         public override string ToString()

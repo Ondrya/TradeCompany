@@ -1,39 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using TradeCompanyApp.Data;
-using TradeCompanyApp.Models;
+using TradeCompanyApp.ModelsDto;
+using TradeCompanyApp.Services;
 
 namespace TradeCompanyApp.Pages.Orders
 {
     public class DetailsModel : PageModel
     {
-        private readonly TradeCompanyApp.Data.TradeCompanyAppContext _context;
+        private readonly DataService _context;
 
-        public DetailsModel(TradeCompanyApp.Data.TradeCompanyAppContext context)
+        public DetailsModel(DataService context)
         {
             _context = context;
         }
 
-      public Order Order { get; set; } = default!; 
+      public OrderDto Order { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Order == null)
-            {
-                return NotFound();
-            }
-
-            var order = await _context
-                .Order
-                .Where(m => m.OrderId == id)
-                .Include(x => x.Client)
-                .FirstOrDefaultAsync();
-
+            var order = _context.OrderGet(id);
 
             if (order == null)
             {

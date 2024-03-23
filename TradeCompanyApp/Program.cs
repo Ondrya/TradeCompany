@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TradeCompanyApp.Models;
-using Microsoft.Extensions.DependencyInjection;
-using TradeCompanyApp.Data;
+using TradeCompanyApp.Services;
 
 namespace TradeCompanyApp
 {
@@ -10,11 +8,9 @@ namespace TradeCompanyApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<TradeCompanyAppContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("TradeCompanyAppContext") ?? throw new InvalidOperationException("Connection string 'TradeCompanyAppContext' not found.")));
 
-            //builder.Services.AddDbContext<CrmContext>(options =>
-            //    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            var cn = builder.Configuration.GetConnectionString("TradeCompanyAppContext");
+            builder.Services.AddSingleton(new DataService(cn));
 
             // Add services to the container.
             builder.Services.AddRazorPages();

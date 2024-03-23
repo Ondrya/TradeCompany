@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace TradeCompanyApp.ModelsDto
+namespace TradeCompanyApp.DAL.Models
 {
-    public class OrderDto
+    public class Order
     {
         /// <summary>
         /// Идентификатор заказа
@@ -32,6 +32,6 @@ namespace TradeCompanyApp.ModelsDto
         /// Клиент в заказе
         /// </summary>
         [DisplayName("Клиент")]
-        public virtual ClientDto? Client { get; set; }
+        public virtual Client? Client { get; set; }
     }
 }

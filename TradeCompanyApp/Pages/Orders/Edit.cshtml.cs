@@ -1,42 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TradeCompanyApp.Data;
-using TradeCompanyApp.Models;
+using TradeCompanyApp.ModelsDto;
+using TradeCompanyApp.Services;
 
 namespace TradeCompanyApp.Pages.Orders
 {
     public class EditModel : PageModel
     {
-        private readonly TradeCompanyApp.Data.TradeCompanyAppContext _context;
+        private readonly DataService _context;
 
-        public EditModel(TradeCompanyApp.Data.TradeCompanyAppContext context)
+        public EditModel(DataService context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Order Order { get; set; } = default!;
+        public OrderDto Order { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Order == null)
-            {
-                return NotFound();
-            }
-
-            var order =  await _context.Order.FirstOrDefaultAsync(m => m.OrderId == id);
+            var order = _context.OrderFind(id);
             if (order == null)
             {
                 return NotFound();
             }
             Order = order;
-           ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
+            ViewData["ClientId"] = new SelectList(_context.ClientGetAll(), "Id", "Id");
             return Page();
         }
 
@@ -49,15 +40,13 @@ namespace TradeCompanyApp.Pages.Orders
                 return Page();
             }
 
-            _context.Attach(Order).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                _context.Update(Order);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderExists(Order.OrderId))
+                if (!_context.OrderExists(Order.OrderId))
                 {
                     return NotFound();
                 }
@@ -68,11 +57,6 @@ namespace TradeCompanyApp.Pages.Orders
             }
 
             return RedirectToPage("./Index");
-        }
-
-        private bool OrderExists(int id)
-        {
-          return (_context.Order?.Any(e => e.OrderId == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TradeCompanyApp.RepositoryWCF.DataServiceWCF" CodeBehind="DataServiceWCF.svc.cs" %>

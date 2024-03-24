@@ -18,7 +18,7 @@ namespace TradeCompanyApp.Pages.Clients
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            ClientDto client = _context.ClientGetPlain(id);
+            ClientDto client = _context.ClientGet(id);
 
             if (client == null)
             {

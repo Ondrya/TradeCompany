@@ -29,24 +29,7 @@ namespace TradeCompanyApp.Models
                 Email = client.Email,
                 Description = client.Description,
                 CreatedAt = client.CreatedAt,
-                Orders = client.Orders?.Select(x => ToOrderDto(x)).ToList()
-            };
-        }
-
-
-        public static ClientDto ToClientDtoPlain(Client? client)
-        {
-            if (client == null)
-                return null;
-
-            return new ClientDto()
-            {
-                Id = client.Id,
-                Name = client.Name,
-                Email = client.Email,
-                Description = client.Description,
-                CreatedAt = client.CreatedAt,
-                Orders = client.Orders?.Select(x => ToOrderDtoPlain(x)).ToList()
+                Orders = client?.Orders?.Select(x => ToOrderPure(x)).ToList()
             };
         }
 
@@ -81,7 +64,7 @@ namespace TradeCompanyApp.Models
             };
         }
 
-        public static OrderDto? ToOrderDtoPlain(Order? order)
+        public static OrderDto? ToOrderPure(Order? order)
         {
             if (order == null)
                 return null;

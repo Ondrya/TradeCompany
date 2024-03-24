@@ -12,6 +12,6 @@ namespace TradeCompanyApp.DAL.Data
 
         public DbSet<Client> Client { get; set; } = default!;
 
-        public DbSet<Order>? Order { get; set; }
+        public DbSet<Order> Order { get; set; } = default!;
     }
 }

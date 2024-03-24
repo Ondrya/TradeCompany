@@ -40,7 +40,7 @@ namespace TradeCompanyApp.Pages.Clients
                 return Page();
             }
 
-            _context.Update(Client);
+            _context.ClientUpdate(Client);
 
             return RedirectToPage("./Index");
         }

@@ -37,7 +37,7 @@ namespace TradeCompanyApp.RepositoryEF
 
         #region Client
 
-        public void Create(ClientDto clientDto)
+        public void ClientCreate(ClientDto clientDto)
         {
             var client = ConvertService.ToClient(clientDto);
 
@@ -48,7 +48,7 @@ namespace TradeCompanyApp.RepositoryEF
             }
         }
 
-        public void Update(ClientDto clientDto)
+        public void ClientUpdate(ClientDto clientDto)
         {
             var client = ConvertService.ToClient(clientDto);
 
@@ -127,7 +127,7 @@ namespace TradeCompanyApp.RepositoryEF
 
         #region Order
 
-        public void Create(OrderDto orderDto)
+        public void OrderCreate(OrderDto orderDto)
         {
             var order = ConvertService.ToOrder(orderDto);
 
@@ -143,7 +143,7 @@ namespace TradeCompanyApp.RepositoryEF
             }
         }
 
-        public void Update(OrderDto orderDto)
+        public void OrderUpdate(OrderDto orderDto)
         {
             var order = ConvertService.ToOrder(orderDto);
 

@@ -31,7 +31,7 @@ namespace TradeCompanyApp.Pages.Clients
                 return Page();
             }
 
-            _context.Create(Client);
+            _context.ClientCreate(Client);
             
             return RedirectToPage("./Index");
         }

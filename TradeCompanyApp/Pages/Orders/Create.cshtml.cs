@@ -33,7 +33,7 @@ namespace TradeCompanyApp.Pages.Orders
                 return Page();
             }
 
-            _context.Create(Order);
+            _context.OrderCreate(Order);
 
             return RedirectToPage("./Index");
         }

@@ -39,7 +39,7 @@ namespace TradeCompanyApp.Pages.Orders
                 return Page();
             }
 
-            _context.Update(Order);
+            _context.OrderUpdate(Order);
 
             return RedirectToPage("./Index");
         }

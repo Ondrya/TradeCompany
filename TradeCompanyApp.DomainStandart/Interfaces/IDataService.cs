@@ -53,7 +53,7 @@ namespace TradeCompanyApp.Domain.Interfaces
         /// </summary>
         /// <param name="clientDto"></param>
         [OperationContract]
-        void Create(ClientDto clientDto);
+        void ClientCreate(ClientDto clientDto);
 
         /// <summary>
         /// Создать новый заказ
@@ -61,7 +61,7 @@ namespace TradeCompanyApp.Domain.Interfaces
         /// <param name="orderDto"></param>
         /// <exception cref="ArgumentNullException"></exception>
         [OperationContract]
-        void Create(OrderDto orderDto);
+        void OrderCreate(OrderDto orderDto);
 
         /// <summary>
         /// Проверить сущствование заказа
@@ -106,14 +106,14 @@ namespace TradeCompanyApp.Domain.Interfaces
         /// </summary>
         /// <param name="clientDto"></param>
         [OperationContract] 
-        void Update(ClientDto clientDto);
+        void ClientUpdate(ClientDto clientDto);
 
         /// <summary>
         /// Обновить заказ
         /// </summary>
         /// <param name="orderDto"></param>
         [OperationContract] 
-        void Update(OrderDto orderDto);
+        void OrderUpdate(OrderDto orderDto);
     }
 
 }

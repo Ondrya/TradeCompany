@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TradeCompanyApp.DAL\TradeCompanyApp.DAL.csproj" />
-    <ProjectReference Include="..\TradeCompanyApp.Domain\TradeCompanyApp.Domain.csproj" />
+    <ProjectReference Include="..\TradeCompanyApp.DomainStandart\TradeCompanyApp.DomainStandart.csproj" />
   </ItemGroup>
 
 </Project>

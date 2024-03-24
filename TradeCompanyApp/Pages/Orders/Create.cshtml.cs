@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using TradeCompanyApp.ModelsDto;
-using TradeCompanyApp.Services;
+using TradeCompanyApp.Domain.Models;
+using TradeCompanyApp.Domain.Interfaces;
 
 namespace TradeCompanyApp.Pages.Orders
 {
     public class CreateModel : PageModel
     {
-        private readonly DataService _context;
+        private readonly IDataService _context;
 
-        public CreateModel(DataService context)
+        public CreateModel(IDataService context)
         {
             _context = context;
         }

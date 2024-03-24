@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TradeCompanyApp.DAL.Converters;
 using TradeCompanyApp.DAL.Data;
-using TradeCompanyApp.Models;
-using TradeCompanyApp.ModelsDto;
+using TradeCompanyApp.Domain.Interfaces;
+using TradeCompanyApp.Domain.Models;
 
-namespace TradeCompanyApp.Services
+namespace TradeCompanyApp.RepositoryEF
 {
     /// <summary>
     /// Класс доступа к данным
     /// </summary>
-    public class DataService
+    public class DataService : IDataService
     {
         /// <summary>
         /// Контекст работы с базой данных
@@ -36,10 +37,6 @@ namespace TradeCompanyApp.Services
 
         #region Client
 
-        /// <summary>
-        /// Создать нового клиента
-        /// </summary>
-        /// <param name="clientDto"></param>
         public void Create(ClientDto clientDto)
         {
             var client = ConvertService.ToClient(clientDto);
@@ -51,11 +48,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-
-        /// <summary>
-        /// Обновить клиента
-        /// </summary>
-        /// <param name="clientDto"></param>
         public void Update(ClientDto clientDto)
         {
             var client = ConvertService.ToClient(clientDto);
@@ -67,10 +59,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-        /// <summary>
-        /// Удалить клиента
-        /// </summary>
-        /// <param name="clientDtoId"></param>
         public void ClientRemove(int clientDtoId)
         {
             using (var _context = GetContext())
@@ -85,11 +73,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-        /// <summary>
-        /// Проверить существование клиента
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public bool ClientExists(int id)
         {
             using (var _context = GetContext())
@@ -98,12 +81,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-
-        /// <summary>
-        /// Найти клиента
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public ClientDto? ClientFind(int? id)
         {
             if (id == null)
@@ -116,11 +93,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-        /// <summary>
-        /// Получить данные клиента с информацией о заказах
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public ClientDto? ClientGet(int? id)
         {
             if (id == null)
@@ -138,10 +110,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-        /// <summary>
-        /// Получить всех клиентов
-        /// </summary>
-        /// <returns></returns>
         public List<ClientDto?> ClientGetAll()
         {
             using (var _context = GetContext())
@@ -159,11 +127,6 @@ namespace TradeCompanyApp.Services
 
         #region Order
 
-        /// <summary>
-        /// Создать новый заказ
-        /// </summary>
-        /// <param name="orderDto"></param>
-        /// <exception cref="ArgumentNullException"></exception>
         public void Create(OrderDto orderDto)
         {
             var order = ConvertService.ToOrder(orderDto);
@@ -180,10 +143,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-        /// <summary>
-        /// Обновить заказ
-        /// </summary>
-        /// <param name="orderDto"></param>
         public void Update(OrderDto orderDto)
         {
             var order = ConvertService.ToOrder(orderDto);
@@ -195,11 +154,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-
-        /// <summary>
-        /// Удалить заказ
-        /// </summary>
-        /// <param name="orderId"></param>
         public void OrderRemove(int? orderId)
         {
             using (var _context = GetContext())
@@ -214,11 +168,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-        /// <summary>
-        /// Проверить сущствование заказа
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public bool OrderExists(int id)
         {
             using (var _context = GetContext())
@@ -227,12 +176,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-
-        /// <summary>
-        /// Найти заказ
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public OrderDto? OrderFind(int? id)
         {
             if (id == null)
@@ -245,11 +188,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-        /// <summary>
-        /// Получить информацию о заказе с информацией о клиенте
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public OrderDto? OrderGet(int? id)
         {
             if (id == null)
@@ -267,10 +205,6 @@ namespace TradeCompanyApp.Services
             }
         }
 
-        /// <summary>
-        /// Список всех заказов
-        /// </summary>
-        /// <returns></returns>
         public IList<OrderDto?> OrderGetAll()
         {
             using (var _context = GetContext())

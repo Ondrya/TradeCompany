@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using TradeCompanyApp.Services;
+using TradeCompanyApp.Domain.Interfaces;
+using TradeCompanyApp.RepositoryEF;
 
 namespace TradeCompanyApp
 {
@@ -10,7 +11,7 @@ namespace TradeCompanyApp
             var builder = WebApplication.CreateBuilder(args);
 
             var cn = builder.Configuration.GetConnectionString("TradeCompanyAppContext");
-            builder.Services.AddSingleton(new DataService(cn));
+            builder.Services.AddSingleton<IDataService>(new DataService(cn));
 
             // Add services to the container.
             builder.Services.AddRazorPages();

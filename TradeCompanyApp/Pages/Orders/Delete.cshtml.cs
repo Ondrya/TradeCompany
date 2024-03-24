@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using TradeCompanyApp.ModelsDto;
-using TradeCompanyApp.Services;
+using TradeCompanyApp.Domain.Models;
+using TradeCompanyApp.Domain.Interfaces;
 
 namespace TradeCompanyApp.Pages.Orders
 {
     public class DeleteModel : PageModel
     {
-        private readonly DataService _context;
+        private readonly IDataService _context;
 
-        public DeleteModel(DataService context)
+        public DeleteModel(IDataService context)
         {
             _context = context;
         }

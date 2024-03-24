@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TradeCompanyApp.DAL\TradeCompanyApp.DAL.csproj" />
+    <ProjectReference Include="..\TradeCompanyApp.RepositoryEF\TradeCompanyApp.RepositoryEF.csproj" />
   </ItemGroup>
 
 </Project>

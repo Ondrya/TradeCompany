@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using TradeCompanyApp.ModelsDto;
-using TradeCompanyApp.Services;
+using TradeCompanyApp.Domain.Models;
+using TradeCompanyApp.Domain.Interfaces;
 
 namespace TradeCompanyApp.Pages.Orders
 {
     public class EditModel : PageModel
     {
-        private readonly DataService _context;
+        private readonly IDataService _context;
 
-        public EditModel(DataService context)
+        public EditModel(IDataService context)
         {
             _context = context;
         }
@@ -40,21 +39,7 @@ namespace TradeCompanyApp.Pages.Orders
                 return Page();
             }
 
-            try
-            {
-                _context.Update(Order);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.OrderExists(Order.OrderId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            _context.Update(Order);
 
             return RedirectToPage("./Index");
         }

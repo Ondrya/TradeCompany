@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace TradeCompanyApp.ModelsDto
+namespace TradeCompanyApp.Domain.Models
 {
     public class OrderDto
     {

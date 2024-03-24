@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TradeCompanyApp.ModelsDto;
-using TradeCompanyApp.Services;
+using TradeCompanyApp.Domain.Models;
+using TradeCompanyApp.Domain.Interfaces;
 
 namespace TradeCompanyApp.Pages.Clients
 {
     public class DetailsModel : PageModel
     {
-        private readonly DataService _context;
+        private readonly IDataService _context;
 
-        public DetailsModel(DataService context)
+        public DetailsModel(IDataService context)
         {
             _context = context;
         }

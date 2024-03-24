@@ -1,7 +1,7 @@
 ﻿using TradeCompanyApp.DAL.Models;
-using TradeCompanyApp.ModelsDto;
+using TradeCompanyApp.Domain.Models;
 
-namespace TradeCompanyApp.Models
+namespace TradeCompanyApp.DAL.Converters
 {
     public static class ConvertService
     {

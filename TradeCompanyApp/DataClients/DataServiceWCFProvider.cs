@@ -13,7 +13,7 @@ namespace TradeCompanyApp.DataClients
             _client = client;   
         }
 
-        public void ClientCreate(ClientDto clientDto)
+        public int ClientCreate(ClientDto clientDto)
         {
             var request = new ClientCreateRequest(clientDto);
             _client.ClientCreate(request);

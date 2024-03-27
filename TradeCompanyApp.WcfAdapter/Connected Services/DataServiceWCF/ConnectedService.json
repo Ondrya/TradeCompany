@@ -1,0 +1,18 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://localhost:64642/DataServiceWCF.svc"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "messageContract": true,
+    "namespaceMappings": [
+      "*, DataServiceWCF"
+    ],
+    "sync": true,
+    "targetFramework": "net6.0",
+    "typeReuseMode": "All"
+  }
+}

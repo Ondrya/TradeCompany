@@ -5,6 +5,9 @@ using System.Runtime.Serialization;
 
 namespace TradeCompanyApp.Domain.Models
 {
+    /// <summary>
+    /// Модель обмена данными клиента
+    /// </summary>
     [DataContract]
     public class ClientDto
     {

@@ -53,7 +53,7 @@ namespace TradeCompanyApp.Domain.Interfaces
         /// </summary>
         /// <param name="clientDto"></param>
         [OperationContract]
-        void ClientCreate(ClientDto clientDto);
+        int ClientCreate(ClientDto clientDto);
 
         /// <summary>
         /// Создать новый заказ
@@ -61,7 +61,7 @@ namespace TradeCompanyApp.Domain.Interfaces
         /// <param name="orderDto"></param>
         /// <exception cref="ArgumentNullException"></exception>
         [OperationContract]
-        void OrderCreate(OrderDto orderDto);
+        int OrderCreate(OrderDto orderDto);
 
         /// <summary>
         /// Проверить сущствование заказа

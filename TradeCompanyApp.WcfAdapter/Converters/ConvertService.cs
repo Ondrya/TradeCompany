@@ -1,13 +1,14 @@
-﻿using TradeCompanyApp.DAL.Models;
-using TradeCompanyApp.Domain.Models;
+﻿using TradeCompanyApp.Domain.Models;
+using ClientWcf = DataServiceWCF.ClientDto;
+using OrderWcf = DataServiceWCF.OrderDto;
 
-namespace TradeCompanyApp.DAL.Converters
+namespace TradeCompanyApp.WcfAdapter.Converters
 {
     public static class ConvertService
     {
-        public static Client ToClient(ClientDto clientDto)
+        public static ClientWcf ToClientWcf(this ClientDto clientDto)
         {
-            return new Client()
+            return new ClientWcf()
             {
                 Id = clientDto.Id,
                 Name = clientDto.Name,
@@ -17,17 +18,7 @@ namespace TradeCompanyApp.DAL.Converters
             };
         }
 
-        public static ClientDto ToClientDto(ClientCreateDto clientCreate)
-        {
-            return new ClientDto()
-            {
-                Name = clientCreate.Name,
-                Email = clientCreate.Email,
-                Description = clientCreate.Description,
-            };
-        }
-
-        public static ClientDto? ToClientDto(Client? client)
+        public static ClientDto? ToClientDto(this ClientWcf? client)
         {
             if (client == null)
                 return null;
@@ -44,12 +35,12 @@ namespace TradeCompanyApp.DAL.Converters
         }
 
 
-        public static Order? ToOrder(OrderDto? order)
+        public static OrderWcf? ToOrderWcf(this OrderDto? order)
         {
             if (order == null)
                 return null;
 
-            return new Order()
+            return new OrderWcf()
             {
                 OrderId = order.OrderId,
                 Description = order.Description,
@@ -59,7 +50,7 @@ namespace TradeCompanyApp.DAL.Converters
         }
 
 
-        public static OrderDto? ToOrderDto(Order? order)
+        public static OrderDto? ToOrderDto(this OrderWcf? order)
         {
             if (order == null)
                 return null;
@@ -74,7 +65,7 @@ namespace TradeCompanyApp.DAL.Converters
             };
         }
 
-        public static OrderDto? ToOrderPure(Order? order)
+        public static OrderDto? ToOrderPure(this OrderWcf? order)
         {
             if (order == null)
                 return null;

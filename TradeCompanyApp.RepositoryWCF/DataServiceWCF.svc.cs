@@ -28,7 +28,7 @@ namespace TradeCompanyApp.RepositoryWCF
 
         #region Client
 
-        public void ClientCreate(ClientDto clientDto)
+        public int ClientCreate(ClientDto clientDto)
         {
             var client = ConvertService.ToClient(clientDto);
 
@@ -36,6 +36,7 @@ namespace TradeCompanyApp.RepositoryWCF
             {
                 _context.Clients.InsertOnSubmit(client);
                 _context.SubmitChanges();
+                return client.Id;
             }
         }
 
@@ -116,7 +117,7 @@ namespace TradeCompanyApp.RepositoryWCF
 
         #region Order
 
-        public void OrderCreate(OrderDto orderDto)
+        public int OrderCreate(OrderDto orderDto)
         {
             var order = ConvertService.ToOrder(orderDto);
 
@@ -129,6 +130,7 @@ namespace TradeCompanyApp.RepositoryWCF
             {
                 _context.Orders.InsertOnSubmit(order);
                 _context.SubmitChanges();
+                return order.OrderId;
             }
         }
 

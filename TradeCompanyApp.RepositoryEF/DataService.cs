@@ -37,7 +37,7 @@ namespace TradeCompanyApp.RepositoryEF
 
         #region Client
 
-        public void ClientCreate(ClientDto clientDto)
+        public int ClientCreate(ClientDto clientDto)
         {
             var client = ConvertService.ToClient(clientDto);
 
@@ -45,6 +45,7 @@ namespace TradeCompanyApp.RepositoryEF
             {
                 _context.Client.Add(client);
                 _context.SaveChanges();
+                return client.Id;
             }
         }
 
@@ -127,7 +128,7 @@ namespace TradeCompanyApp.RepositoryEF
 
         #region Order
 
-        public void OrderCreate(OrderDto orderDto)
+        public int OrderCreate(OrderDto orderDto)
         {
             var order = ConvertService.ToOrder(orderDto);
 
@@ -140,6 +141,7 @@ namespace TradeCompanyApp.RepositoryEF
             {
                 _context.Order.Add(order);
                 _context.SaveChanges();
+                return order.OrderId;
             }
         }
 

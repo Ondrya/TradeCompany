@@ -28,6 +28,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TradeCompanyApp.RepositoryEF\TradeCompanyApp.RepositoryEF.csproj" />
+    <ProjectReference Include="..\TradeCompanyApp.WcfAdapter\TradeCompanyApp.WcfAdapter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Connected Services\" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,187 @@
 
 namespace DataServiceWCF
 {
+    using System.Runtime.Serialization;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ClientDto", Namespace="http://schemas.datacontract.org/2004/07/TradeCompanyApp.Domain.Models")]
+    public partial class ClientDto : object
+    {
+        
+        private System.DateTime CreatedAtField;
+        
+        private string DescriptionField;
+        
+        private string EmailField;
+        
+        private int IdField;
+        
+        private string NameField;
+        
+        private DataServiceWCF.OrderDto[] OrdersField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime CreatedAt
+        {
+            get
+            {
+                return this.CreatedAtField;
+            }
+            set
+            {
+                this.CreatedAtField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email
+        {
+            get
+            {
+                return this.EmailField;
+            }
+            set
+            {
+                this.EmailField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DataServiceWCF.OrderDto[] Orders
+        {
+            get
+            {
+                return this.OrdersField;
+            }
+            set
+            {
+                this.OrdersField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderDto", Namespace="http://schemas.datacontract.org/2004/07/TradeCompanyApp.Domain.Models")]
+    public partial class OrderDto : object
+    {
+        
+        private string AddressField;
+        
+        private DataServiceWCF.ClientDto ClientField;
+        
+        private int ClientIdField;
+        
+        private string DescriptionField;
+        
+        private int OrderIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address
+        {
+            get
+            {
+                return this.AddressField;
+            }
+            set
+            {
+                this.AddressField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DataServiceWCF.ClientDto Client
+        {
+            get
+            {
+                return this.ClientField;
+            }
+            set
+            {
+                this.ClientField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ClientId
+        {
+            get
+            {
+                return this.ClientIdField;
+            }
+            set
+            {
+                this.ClientIdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this.DescriptionField;
+            }
+            set
+            {
+                this.DescriptionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int OrderId
+        {
+            get
+            {
+                return this.OrderIdField;
+            }
+            set
+            {
+                this.OrderIdField = value;
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.1.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DataServiceWCF.IDataService")]
@@ -165,13 +345,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.ClientDto ClientFindResult;
+        public DataServiceWCF.ClientDto ClientFindResult;
         
         public ClientFindResponse()
         {
         }
         
-        public ClientFindResponse(TradeCompanyApp.Domain.Models.ClientDto ClientFindResult)
+        public ClientFindResponse(DataServiceWCF.ClientDto ClientFindResult)
         {
             this.ClientFindResult = ClientFindResult;
         }
@@ -203,13 +383,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.ClientDto ClientGetResult;
+        public DataServiceWCF.ClientDto ClientGetResult;
         
         public ClientGetResponse()
         {
         }
         
-        public ClientGetResponse(TradeCompanyApp.Domain.Models.ClientDto ClientGetResult)
+        public ClientGetResponse(DataServiceWCF.ClientDto ClientGetResult)
         {
             this.ClientGetResult = ClientGetResult;
         }
@@ -233,13 +413,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.ClientDto[] ClientGetAllResult;
+        public DataServiceWCF.ClientDto[] ClientGetAllResult;
         
         public ClientGetAllResponse()
         {
         }
         
-        public ClientGetAllResponse(TradeCompanyApp.Domain.Models.ClientDto[] ClientGetAllResult)
+        public ClientGetAllResponse(DataServiceWCF.ClientDto[] ClientGetAllResult)
         {
             this.ClientGetAllResult = ClientGetAllResult;
         }
@@ -282,13 +462,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.ClientDto clientDto;
+        public DataServiceWCF.ClientDto clientDto;
         
         public ClientCreateRequest()
         {
         }
         
-        public ClientCreateRequest(TradeCompanyApp.Domain.Models.ClientDto clientDto)
+        public ClientCreateRequest(DataServiceWCF.ClientDto clientDto)
         {
             this.clientDto = clientDto;
         }
@@ -300,8 +480,16 @@ namespace DataServiceWCF
     public partial class ClientCreateResponse
     {
         
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int ClientCreateResult;
+        
         public ClientCreateResponse()
         {
+        }
+        
+        public ClientCreateResponse(int ClientCreateResult)
+        {
+            this.ClientCreateResult = ClientCreateResult;
         }
     }
     
@@ -312,13 +500,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.OrderDto orderDto;
+        public DataServiceWCF.OrderDto orderDto;
         
         public OrderCreateRequest()
         {
         }
         
-        public OrderCreateRequest(TradeCompanyApp.Domain.Models.OrderDto orderDto)
+        public OrderCreateRequest(DataServiceWCF.OrderDto orderDto)
         {
             this.orderDto = orderDto;
         }
@@ -330,8 +518,16 @@ namespace DataServiceWCF
     public partial class OrderCreateResponse
     {
         
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int OrderCreateResult;
+        
         public OrderCreateResponse()
         {
+        }
+        
+        public OrderCreateResponse(int OrderCreateResult)
+        {
+            this.OrderCreateResult = OrderCreateResult;
         }
     }
     
@@ -399,13 +595,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.OrderDto OrderFindResult;
+        public DataServiceWCF.OrderDto OrderFindResult;
         
         public OrderFindResponse()
         {
         }
         
-        public OrderFindResponse(TradeCompanyApp.Domain.Models.OrderDto OrderFindResult)
+        public OrderFindResponse(DataServiceWCF.OrderDto OrderFindResult)
         {
             this.OrderFindResult = OrderFindResult;
         }
@@ -437,13 +633,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.OrderDto OrderGetResult;
+        public DataServiceWCF.OrderDto OrderGetResult;
         
         public OrderGetResponse()
         {
         }
         
-        public OrderGetResponse(TradeCompanyApp.Domain.Models.OrderDto OrderGetResult)
+        public OrderGetResponse(DataServiceWCF.OrderDto OrderGetResult)
         {
             this.OrderGetResult = OrderGetResult;
         }
@@ -467,13 +663,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.OrderDto[] OrderGetAllResult;
+        public DataServiceWCF.OrderDto[] OrderGetAllResult;
         
         public OrderGetAllResponse()
         {
         }
         
-        public OrderGetAllResponse(TradeCompanyApp.Domain.Models.OrderDto[] OrderGetAllResult)
+        public OrderGetAllResponse(DataServiceWCF.OrderDto[] OrderGetAllResult)
         {
             this.OrderGetAllResult = OrderGetAllResult;
         }
@@ -516,13 +712,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.ClientDto clientDto;
+        public DataServiceWCF.ClientDto clientDto;
         
         public ClientUpdateRequest()
         {
         }
         
-        public ClientUpdateRequest(TradeCompanyApp.Domain.Models.ClientDto clientDto)
+        public ClientUpdateRequest(DataServiceWCF.ClientDto clientDto)
         {
             this.clientDto = clientDto;
         }
@@ -546,13 +742,13 @@ namespace DataServiceWCF
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public TradeCompanyApp.Domain.Models.OrderDto orderDto;
+        public DataServiceWCF.OrderDto orderDto;
         
         public OrderUpdateRequest()
         {
         }
         
-        public OrderUpdateRequest(TradeCompanyApp.Domain.Models.OrderDto orderDto)
+        public OrderUpdateRequest(DataServiceWCF.OrderDto orderDto)
         {
             this.orderDto = orderDto;
         }

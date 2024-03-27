@@ -1,9 +1,6 @@
 using DataServiceWCF;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using TradeCompanyApp.DataClients;
-using TradeCompanyApp.Domain.Interfaces;
-using TradeCompanyApp.RepositoryEF;
 
 namespace TradeCompanyApp
 {

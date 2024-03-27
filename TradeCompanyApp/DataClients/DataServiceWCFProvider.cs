@@ -1,9 +1,11 @@
-﻿using DataServiceWCF;
-using TradeCompanyApp.Domain.Models;
+﻿using ClientDomain = TradeCompanyApp.Domain.Models.ClientDto;
+using OrderDomain = TradeCompanyApp.Domain.Models.OrderDto;
+using DataServiceWCF;
+using TradeCompanyApp.WcfAdapter.Converters;
 
 namespace TradeCompanyApp.DataClients
 {
-    public class DataServiceWCFProvider : Domain.Interfaces.IDataService
+    public class DataServiceWCFProvider : TradeCompanyApp.Domain.Interfaces.IDataService
     {
         private readonly DataServiceClient _client;
 
@@ -13,10 +15,11 @@ namespace TradeCompanyApp.DataClients
             _client = client;   
         }
 
-        public int ClientCreate(ClientDto clientDto)
+        public int ClientCreate(ClientDomain clientDto)
         {
-            var request = new ClientCreateRequest(clientDto);
-            _client.ClientCreate(request);
+            var request = new ClientCreateRequest(clientDto.ToClientWcf());
+            var id = _client.ClientCreate(request).ClientCreateResult;
+            return id;
         }
 
         public bool ClientExists(int id)
@@ -25,22 +28,24 @@ namespace TradeCompanyApp.DataClients
             return _client.ClientExists(request).ClientExistsResult;
         }
 
-        public ClientDto ClientFind(int? id)
+        public ClientDomain ClientFind(int? id)
         {
             var request = new ClientFindRequest(id);
-            return _client.ClientFind(request).ClientFindResult;
+            return _client.ClientFind(request).ClientFindResult?.ToClientDto();
         }
 
-        public ClientDto ClientGet(int? id)
+        public ClientDomain ClientGet(int? id)
         {
             var request = new ClientGetRequest(id);
-            return _client.ClientGet(request).ClientGetResult;
+            return _client.ClientGet(request).ClientGetResult?.ToClientDto();
         }
 
-        public List<ClientDto> ClientGetAll()
+        public List<ClientDomain> ClientGetAll()
         {
             var request = new ClientGetAllRequest();
-            return _client.ClientGetAll(request).ClientGetAllResult.ToList();
+            return _client.ClientGetAll(request).ClientGetAllResult
+                .Select(x => x.ToClientDto())
+                .ToList();
         }
 
         public void ClientRemove(int clientDtoId)
@@ -49,16 +54,17 @@ namespace TradeCompanyApp.DataClients
             _client.ClientRemove(request);
         }
 
-        public void ClientUpdate(ClientDto clientDto)
+        public void ClientUpdate(ClientDomain clientDto)
         {
-            var request = new ClientUpdateRequest(clientDto);
+            var request = new ClientUpdateRequest(clientDto.ToClientWcf());
             _client.ClientUpdate(request);
         }
 
-        public void OrderCreate(OrderDto orderDto)
+        public int OrderCreate(OrderDomain orderDto)
         {
-            var request = new OrderCreateRequest(orderDto);
-            _client.OrderCreate(request);
+            var request = new OrderCreateRequest(orderDto.ToOrderWcf());
+            var id = _client.OrderCreate(request).OrderCreateResult;
+            return id;
         }
 
         public bool OrderExists(int id)
@@ -67,22 +73,24 @@ namespace TradeCompanyApp.DataClients
             return _client.OrderExists(request).OrderExistsResult;
         }
 
-        public OrderDto OrderFind(int? id)
+        public OrderDomain OrderFind(int? id)
         {
             var request = new OrderFindRequest(id);
-            return _client.OrderFind(request).OrderFindResult;
+            return _client.OrderFind(request).OrderFindResult?.ToOrderDto();
         }
 
-        public OrderDto OrderGet(int? id)
+        public OrderDomain OrderGet(int? id)
         {
             var request = new OrderGetRequest(id);
-            return _client.OrderGet(request).OrderGetResult;
+            return _client.OrderGet(request).OrderGetResult?.ToOrderDto();
         }
 
-        public IList<OrderDto> OrderGetAll()
+        public IList<OrderDomain> OrderGetAll()
         {
             var request = new OrderGetAllRequest();
-            return _client.OrderGetAll(request).OrderGetAllResult.ToList();
+            return _client.OrderGetAll(request).OrderGetAllResult
+                .Select(x => x.ToOrderDto())
+                .ToList();
         }
 
         public void OrderRemove(int? orderId)
@@ -91,9 +99,9 @@ namespace TradeCompanyApp.DataClients
             _client.OrderRemove(request);
         }
 
-        public void OrderUpdate(OrderDto orderDto)
+        public void OrderUpdate(OrderDomain orderDto)
         {
-            var request = new OrderUpdateRequest(orderDto);
+            var request = new OrderUpdateRequest(orderDto.ToOrderWcf());
             _client.OrderUpdate(request);
         }
     }

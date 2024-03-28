@@ -12,7 +12,7 @@ namespace TradeCompany.WebApi.Controllers
     /// </summary>
     [Route("api/v{v:apiVersion}/[controller]")]
     [ApiController]
-    [ApiVersion(1)]
+    [ApiVersion(2)]
     public class OrdersController : ControllerBase
     {
         /// <summary>

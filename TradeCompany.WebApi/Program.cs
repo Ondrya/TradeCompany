@@ -1,6 +1,9 @@
 using Asp.Versioning;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
+using TradeCompany.WebApi.SwaggerLib;
 using TradeCompanyApp.Domain.Interfaces;
 using TradeCompanyApp.RepositoryEF;
 
@@ -35,18 +38,15 @@ namespace TradeCompany.WebApi
                 options.SubstituteApiVersionInUrl = true;
             });
 
-            builder.Services.AddSwaggerGen(
-                c =>
-            {
-                c.IncludeXmlComments(
-                    Path.Combine(
-                        AppContext.BaseDirectory,
-                        $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"
-                        )
-                    );
-            }
-            );
 
+            builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                // Add a custom operation filter which sets default values
+                options.OperationFilter<SwaggerDefaultValues>();
+            });
+
+            
             var app = builder.Build();
 
             app.UseDeveloperExceptionPage();
@@ -59,7 +59,10 @@ namespace TradeCompany.WebApi
                 app.UseSwaggerUI(
                     options =>
                     {
-                        foreach (var description in app.DescribeApiVersions())
+                        var descriptions = app.DescribeApiVersions();
+
+                        // Build a swagger endpoint for each discovered API version
+                        foreach (var description in descriptions)
                         {
                             var url = $"/swagger/{description.GroupName}/swagger.json";
                             var name = description.GroupName.ToUpperInvariant();

@@ -21,6 +21,10 @@ builder.Services.AddSwaggerGen(options =>
 {
     // Add a custom operation filter which sets default values
     options.OperationFilter<SwaggerDefaultValues>();
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
 });
 ```
 
